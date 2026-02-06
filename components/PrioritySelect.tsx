@@ -21,12 +21,14 @@ export function PrioritySelect({
   className = '',
   disabled = false,
 }: PrioritySelectProps) {
+  const defaultClassName = 'px-4 py-2 bg-slate-700/50 border border-slate-600 text-white rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none';
+  
   return (
     <select
       value={value}
       onChange={(e) => onChange(e.target.value as Priority)}
       disabled={disabled}
-      className={`px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none ${className}`}
+      className={className || defaultClassName}
     >
       {Object.values(PRIORITY_CONFIGS).map((config) => (
         <option key={config.value} value={config.value}>

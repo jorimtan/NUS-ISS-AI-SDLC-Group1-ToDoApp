@@ -48,12 +48,12 @@ export function TagSelector({ selectedTagIds, onChange }: TagSelectorProps) {
   const selectedTags = tags.filter(t => selectedTagIds.includes(t.id));
 
   if (loading) {
-    return <div className="text-sm text-gray-500">Loading tags...</div>;
+    return <div className="text-sm text-slate-400">Loading tags...</div>;
   }
 
   return (
     <div className="relative">
-      <label className="block text-sm font-medium text-gray-700 mb-2">
+      <label className="block text-sm font-medium text-slate-300 mb-2">
         Tags
       </label>
 
@@ -75,7 +75,7 @@ export function TagSelector({ selectedTagIds, onChange }: TagSelectorProps) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-left bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        className="w-full px-4 py-2 bg-slate-700/50 border border-slate-600 text-white rounded-lg text-left hover:bg-slate-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
       >
         {selectedTags.length > 0 ? 'Add more tags...' : 'Select tags...'}
       </button>
@@ -89,9 +89,9 @@ export function TagSelector({ selectedTagIds, onChange }: TagSelectorProps) {
           />
           
           {/* Dropdown Menu */}
-          <div className="absolute z-20 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+          <div className="absolute z-20 mt-1 w-full bg-slate-800 border border-slate-600 rounded-lg shadow-lg max-h-60 overflow-y-auto">
             {tags.length === 0 ? (
-              <div className="px-4 py-3 text-sm text-gray-500 text-center">
+              <div className="px-4 py-3 text-sm text-slate-400 text-center">
                 No tags available. Create one first!
               </div>
             ) : (
@@ -100,11 +100,11 @@ export function TagSelector({ selectedTagIds, onChange }: TagSelectorProps) {
                   key={tag.id}
                   type="button"
                   onClick={() => handleToggle(tag.id)}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center justify-between transition-colors"
+                  className="w-full px-4 py-2 text-left hover:bg-slate-700/50 flex items-center justify-between transition-colors"
                 >
                   <TagBadge name={tag.name} color={tag.color} size="sm" />
                   {selectedTagIds.includes(tag.id) && (
-                    <span className="text-blue-600 font-bold">✓</span>
+                    <span className="text-blue-400 font-bold">✓</span>
                   )}
                 </button>
               ))

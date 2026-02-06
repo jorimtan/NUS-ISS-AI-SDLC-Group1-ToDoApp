@@ -58,12 +58,13 @@ export async function POST(request: NextRequest) {
     const rpID = process.env.NEXT_PUBLIC_RP_ID || 'localhost';
     const origin = process.env.NEXT_PUBLIC_ORIGIN || 'http://localhost:3000';
 
-    // Convert stored base64url strings back to Uint8Array
-    const credentialIDBytes = isoBase64URL.toBuffer(authenticator.credential_id);
+    // Convert stored public key base64url string to Uint8Array
+    // credential_id stays as base64url string
     const publicKeyBytes = isoBase64URL.toBuffer(authenticator.public_key);
 
     // Verify the authentication response
     // In @simplewebauthn/server v11, use 'credential' parameter (not 'authenticator')
+    // credential.id is Base64URLString, credential.publicKey is Uint8Array
     const verification = await verifyAuthenticationResponse({
       response: credential,
       expectedChallenge,
@@ -71,7 +72,7 @@ export async function POST(request: NextRequest) {
       expectedRPID: rpID,
       requireUserVerification: false,
       credential: {
-        id: credentialIDBytes,
+        id: authenticator.credential_id,
         publicKey: publicKeyBytes,
         counter: authenticator.counter ?? 0,
         transports: authenticator.transports ? JSON.parse(authenticator.transports) : undefined,

@@ -8,6 +8,8 @@
 
 import Database from 'better-sqlite3';
 import { getSingaporeNow, formatSingaporeDate } from './timezone';
+import type { Priority, PriorityConfig } from './constants';
+import { getRandomTagColor } from './constants';
 
 const db = new Database('todos.db');
 
@@ -18,8 +20,8 @@ db.pragma('foreign_keys = ON');
 // Type Definitions
 // ============================================================================
 
-// Re-export type from constants for consistency
-export type { Priority, PriorityConfig } from './constants';
+// Re-export types for external use
+export type { Priority, PriorityConfig };
 export type RecurrencePattern = 'daily' | 'weekly' | 'monthly' | 'yearly';
 export type TemplateCategory = 'work' | 'personal' | 'other';
 

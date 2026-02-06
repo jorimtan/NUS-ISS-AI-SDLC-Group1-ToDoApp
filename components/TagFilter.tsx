@@ -57,7 +57,6 @@ export function TagFilter({ selectedTagId, onFilterChange }: TagFilterProps) {
           className={`transition-all ${
             tag.id === selectedTagId ? 'ring-2 ring-offset-2 scale-105' : 'opacity-60 hover:opacity-100'
           }`}
-          style={{ ringColor: tag.id === selectedTagId ? tag.color : undefined }}
           type="button"
         >
           <TagBadge name={tag.name} color={tag.color} size="sm" />

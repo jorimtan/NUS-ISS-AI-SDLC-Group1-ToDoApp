@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
 
     console.log('credentialInfo.id type:', typeof credentialID);
     console.log('credentialInfo.id:', credentialID);
-    console.log('Is Uint8Array:', credentialID instanceof Uint8Array);
+    // console.log('Is Uint8Array:', credentialID instanceof Uint8Array);
 
     // Create user
     const user = userDB.create(username, username);
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       credential_id: credentialIdBase64,
       public_key: publicKeyBase64,
       counter: counter ?? 0,
-      transports: null,
+      transports: undefined,
     });
 
     // Create session

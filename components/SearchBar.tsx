@@ -33,11 +33,11 @@ export function SearchBar({
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-4 py-2 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+        className="w-full px-4 py-2 pl-10 text-base bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
         aria-label="Search todos"
       />
       <span
-        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg"
+        className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg"
         aria-hidden="true"
       >
         🔍
@@ -45,7 +45,7 @@ export function SearchBar({
       {searchTerm && (
         <button
           onClick={() => setSearchTerm('')}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors text-xl font-bold leading-none"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors text-xl font-bold leading-none"
           aria-label="Clear search"
           title="Clear search"
         >

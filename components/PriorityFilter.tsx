@@ -9,28 +9,33 @@ import { Priority } from '@/lib/db';
 import { PRIORITY_CONFIGS } from '@/lib/constants';
 
 interface PriorityFilterProps {
-  selectedPriority: Priority | null;
-  onFilterChange: (priority: Priority | null) => void;
+  selectedPriority?: Priority | null;
+  onFilterChange?: (priority: Priority | null) => void;
+  value?: Priority | null;
+  onChange?: (priority: Priority | null) => void;
+  className?: string;
 }
 
 export function PriorityFilter({ 
   selectedPriority, 
-  onFilterChange 
+  onFilterChange,
+  value,
+  onChange,
+  className = ''
 }: PriorityFilterProps) {
+  const priority = value ?? selectedPriority ?? null;
+  const handleChange = onChange ?? onFilterChange ?? (() => {});
+  
   return (
     <div className="flex items-center gap-3 flex-wrap">
-      <label className="text-sm font-medium text-gray-700">
-        Filter by Priority:
-      </label>
-      
       <select
-        value={selectedPriority || 'all'}
+        value={priority || 'all'}
         onChange={(e) => {
-          const value = e.target.value;
-          onFilterChange(value === 'all' ? null : value as Priority);
+          const val = e.target.value;
+          handleChange(val === 'all' ? null : val as Priority);
         }}
         aria-label="Priority filter"
-        className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        className={className || "px-4 py-2 bg-slate-700/50 border border-slate-600 text-white rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"}
       >
         <option value="all">All Priorities</option>
         {Object.values(PRIORITY_CONFIGS).map((config) => (
@@ -39,21 +44,6 @@ export function PriorityFilter({
           </option>
         ))}
       </select>
-      
-      {selectedPriority && (
-        <button
-          onClick={() => onFilterChange(null)}
-          className="text-sm text-blue-600 hover:text-blue-800 underline"
-        >
-          Clear filter
-        </button>
-      )}
-      
-      {selectedPriority && (
-        <span className="text-sm text-gray-500">
-          Showing {selectedPriority} priority todos only
-        </span>
-      )}
     </div>
   );
 }

@@ -86,6 +86,12 @@ export default function HomePage() {
   // Toast state
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
+  // Toast helper function
+  const showToast = useCallback((message: string, type: 'success' | 'error') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 5000);
+  }, []);
+
   // Fetch todos and user info on mount
   const fetchTodos = useCallback(async () => {
     try {

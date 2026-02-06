@@ -3,22 +3,10 @@
  * Client-side search and filtering for todos
  */
 
-import { Priority, RecurrencePattern } from './db';
+import { Priority, RecurrencePattern, TodoWithRelations } from './db';
 
-/**
- * Todo with related entities for search
- */
-export interface TodoWithRelations {
-  id: number;
-  title: string;
-  priority: Priority;
-  completed: number;
-  due_date: string;
-  recurrence_pattern?: RecurrencePattern | null;
-  reminder_minutes?: number | null;
-  tags?: { id: number; name: string; color: string }[];
-  subtasks?: { id: number; title: string; completed: number }[];
-}
+// Re-export for convenience
+export type { TodoWithRelations, Priority, RecurrencePattern };
 
 /**
  * Filter state interface

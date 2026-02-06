@@ -44,7 +44,6 @@ export async function POST(
     title: template.title,
     due_date: dueDate,
     priority: template.priority,
-    completed: 0,
   });
 
   // Create subtasks
@@ -56,7 +55,6 @@ export async function POST(
           todo_id: todo.id,
           title: data.title,
           position: data.position,
-          completed: 0,
         });
       });
     } catch (error) {

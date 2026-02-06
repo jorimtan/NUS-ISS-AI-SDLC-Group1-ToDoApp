@@ -825,11 +825,11 @@ export class TestHelpers {
     const dueDate = await dueDateElement.textContent() || '';
     
     const priorityElement = templateCard.locator('[class*="priority"]').first();
-    const priority = await priorityElement.textContent().catch(() => 'medium');
+    const priority = (await priorityElement.textContent().catch(() => 'medium')) || 'medium';
     
     const subtaskElement = templateCard.locator('text=/✓ \\d+ subtask/');
     const subtaskText = await subtaskElement.textContent().catch(() => '0 subtasks');
-    const subtaskCount = parseInt(subtaskText.match(/\\d+/)?.[0] || '0', 10);
+    const subtaskCount = parseInt((subtaskText || '0 subtasks').match(/\\d+/)?.[0] || '0', 10);
     
     return {
       title,
