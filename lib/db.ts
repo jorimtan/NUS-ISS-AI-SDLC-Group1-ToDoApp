@@ -11,7 +11,11 @@ import { getSingaporeNow, formatSingaporeDate } from './timezone';
 import type { Priority, PriorityConfig } from './constants';
 import { getRandomTagColor } from './constants';
 
-const db = new Database('todos.db');
+// Use /tmp for Railway deployment, fallback to local for development
+const dbPath = process.env.NODE_ENV === 'production' ? '/tmp/todos.db' : 'todos.db';
+const db = new Database(dbPath);
+
+console.log('Database initialized at:', dbPath);
 
 // Enable foreign keys
 db.pragma('foreign_keys = ON');
